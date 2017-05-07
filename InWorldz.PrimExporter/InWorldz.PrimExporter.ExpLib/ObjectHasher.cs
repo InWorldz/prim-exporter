@@ -11,16 +11,36 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using System;
+using System.Linq;
 using OpenMetaverse;
 using OpenMetaverse.Rendering;
 using OpenSim.Framework;
 using Murmurhash264A;
+using OpenSim.Region.Framework.Scenes;
 
 namespace InWorldz.PrimExporter.ExpLib
 {
     public sealed class ObjectHasher
     {
+        /// <summary>
+        /// Calculate a hash for all primitives in a group
+        /// </summary>
+        /// <param name="group"></param>
+        /// <returns></returns>
+        public ulong GetGroupHash(SceneObjectGroup group)
+        {
+            ulong hash = 5381;
+            var parts = group.GetParts().OrderBy(p => p.LinkNum);
+            foreach (var part in parts)
+            {
+                hash = Murmur2.Hash(GetPrimHash(part.Shape), hash);
+            }
+
+            return hash;
+        }
+
         /// <summary>
         /// Calculate a hash that takes both the prim shape and materials into account
         /// </summary>
@@ -32,21 +52,30 @@ namespace InWorldz.PrimExporter.ExpLib
         /// <summary>
         /// Calculate a hash that takes both the prim shape and materials into account
         /// </summary>
-        public ulong GetPrimHash(ulong hash, PrimitiveBaseShape shape, DetailLevel lod, FacetedMesh mesh, Primitive prim)
+        public ulong GetPrimHash(PrimitiveBaseShape shape)
         {
-            hash = Murmur2.Hash(GetMeshShapeHash(shape, lod), hash);
-            return Murmur2.Hash(GetMeshMaterialHash(mesh, prim), hash);
+            Primitive prim = shape.ToOmvPrimitive(Vector3.Zero, Quaternion.Identity);
+            return GetPrimHash(prim, shape);
+        }
+
+        /// <summary>
+        /// Calculate a hash that takes both the prim shape and materials into account
+        /// </summary>
+        public ulong GetPrimHash(Primitive prim, PrimitiveBaseShape shape)
+        {
+            return GetPrimHash(GetMeshMaterialHash(prim), GetMeshShapeHash(shape));
         }
 
         /// <summary>
         /// Calculate a hash value over fields that can affect the underlying physics shape.
         /// Things like RenderMaterials and TextureEntry data are not included.
         /// </summary>
-        /// <param name="size"></param>
+        /// <param name="shape"></param>
         /// <param name="lod"></param>
         /// <returns>ulong - a calculated hash value</returns>
-        public ulong GetMeshShapeHash(PrimitiveBaseShape shape, DetailLevel lod)
+        public ulong GetMeshShapeHash(PrimitiveBaseShape shape)
         {
+            const DetailLevel lod = DetailLevel.Highest;
             ulong hash = 5381;
 
             hash = Murmur2.Hash(shape.PathCurve, hash);
@@ -93,13 +122,12 @@ namespace InWorldz.PrimExporter.ExpLib
         /// Returns a hash value calculated from face parameters that would affect
         /// the appearance of the mesh faces but not their shape
         /// </summary>
-        /// <param name="faces"></param>
         /// <returns></returns>
-        public ulong GetMeshMaterialHash(FacetedMesh mesh, Primitive prim)
+        public ulong GetMeshMaterialHash(Primitive prim)
         {
             ulong hash = 5381;
 
-            var numFaces = mesh.Faces.Count;
+            int numFaces = prim.Textures.FaceTextures.Count(face => face != null);
             for (int i = 0; i < numFaces; i++)
             {
                 Primitive.TextureEntryFace teFace = prim.Textures.GetFace((uint)i);

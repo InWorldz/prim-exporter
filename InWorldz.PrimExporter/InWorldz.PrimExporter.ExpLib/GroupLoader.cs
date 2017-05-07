@@ -378,8 +378,8 @@ namespace InWorldz.PrimExporter.ExpLib
             return new PrimDisplayData { Mesh = mesh, IsRootPrim = part.IsRootPart(),
                 OffsetPosition = pos, OffsetRotation = part.RotationOffset,
                 Scale = part.Scale,
-                ShapeHash = _objectHasher.GetMeshShapeHash(part.Shape, DetailLevel.Highest),
-                MaterialHash = _objectHasher.GetMeshMaterialHash(mesh, prim),
+                ShapeHash = _objectHasher.GetMeshShapeHash(part.Shape),
+                MaterialHash = _objectHasher.GetMeshMaterialHash(prim),
                 LinkNum = part.LinkNum
             };
         }
