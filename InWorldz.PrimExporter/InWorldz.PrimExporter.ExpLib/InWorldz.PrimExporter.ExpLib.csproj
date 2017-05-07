@@ -69,6 +69,18 @@
     <Reference Include="InWorldz.Whip.Client">
       <HintPath>..\..\..\halcyon\bin\InWorldz.Whip.Client.dll</HintPath>
     </Reference>
+    <Reference Include="LibreMetaverse">
+      <HintPath>..\..\..\halcyon\bin\LibreMetaverse.dll</HintPath>
+    </Reference>
+    <Reference Include="LibreMetaverse.Rendering.Meshmerizer">
+      <HintPath>..\..\LibreMetaverse.Rendering.Meshmerizer.dll</HintPath>
+    </Reference>
+    <Reference Include="LibreMetaverse.StructuredData">
+      <HintPath>..\..\..\halcyon\bin\LibreMetaverse.StructuredData.dll</HintPath>
+    </Reference>
+    <Reference Include="LibreMetaverse.Types">
+      <HintPath>..\..\..\halcyon\bin\LibreMetaverse.Types.dll</HintPath>
+    </Reference>
     <Reference Include="Murmurhash264A, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SlideWave.Util.Mumurhash264A.1.0.0\lib\net45\Murmurhash264A.dll</HintPath>
       <Private>True</Private>
@@ -81,21 +93,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\halcyon\bin\Nini.dll</HintPath>
     </Reference>
-    <Reference Include="OpenMetaverse, Version=0.0.0.16496, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\halcyon\bin\OpenMetaverse.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenMetaverse.Rendering.Meshmerizer">
-      <HintPath>..\..\OpenMetaverse.Rendering.Meshmerizer.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenMetaverse.StructuredData, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\halcyon\bin\OpenMetaverse.StructuredData.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenMetaverseTypes, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\halcyon\bin\OpenMetaverseTypes.dll</HintPath>
-    </Reference>
     <Reference Include="OpenSim.Data">
       <HintPath>..\..\..\halcyon\bin\OpenSim.Data.dll</HintPath>
     </Reference>
@@ -104,9 +101,6 @@
     </Reference>
     <Reference Include="OpenSim.Region.Framework">
       <HintPath>..\..\..\halcyon\bin\OpenSim.Region.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="PrimMesher">
-      <HintPath>..\..\PrimMesher.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Text">
       <HintPath>..\packages\ServiceStack.Text.3.9.43\lib\net35\ServiceStack.Text.dll</HintPath>

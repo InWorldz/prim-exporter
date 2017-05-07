@@ -40,15 +40,15 @@
       <HintPath>..\packages\CompareNETObjects.3.06.0.0\lib\net452\KellermanSoftware.Compare-NET-Objects.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LibreMetaverse">
+      <HintPath>..\..\..\halcyon\bin\LibreMetaverse.dll</HintPath>
+    </Reference>
+    <Reference Include="LibreMetaverse.Types">
+      <HintPath>..\..\..\halcyon\bin\LibreMetaverse.Types.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="OpenMetaverse">
-      <HintPath>..\..\..\halcyon\bin\OpenMetaverse.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenMetaverseTypes">
-      <HintPath>..\..\..\halcyon\bin\OpenMetaverseTypes.dll</HintPath>
     </Reference>
     <Reference Include="OpenSim.Data">
       <HintPath>..\InWorldz.PrimExporter.ExpLib\bin\x64\Debug\OpenSim.Data.dll</HintPath>
